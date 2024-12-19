@@ -1,0 +1,37 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Clean Build",
+            "type": "shell",
+            "command": "/usr/bin/g++",  // Use the g++ compiler from WSL
+            "args": [
+                "-g",
+                "${file}",      // Build the currently open file
+                "-o",
+                "${workspaceFolder}/build/${fileBasenameNoExtension}"  // Output executable
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"  // WSL paths, typically in the workspace
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build C++ source in WSL"
+        },
+        {
+            "label": "Run",
+            "type": "shell",
+            "command": "${fileDirname}/${fileBasenameNoExtension}",  // Run the executable
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Run compiled executable in WSL"
+        }
+    ]
+}
+
